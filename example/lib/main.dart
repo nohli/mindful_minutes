@@ -34,8 +34,8 @@ class _MyAppState extends State<MyApp> {
     if (!hasPermission) {
       final bool isPermissionGranted = await plugin.requestPermission();
       if (isPermissionGranted) {
-        final startTime = DateTime.now();
-        final endTime = startTime.subtract(const Duration(minutes: 1));
+        final endTime = DateTime.now();
+        final startTime = endTime.subtract(const Duration(minutes: 1));
         await plugin.writeMindfulMinutes(startTime, endTime);
       }
     }

@@ -1,3 +1,7 @@
+## 0.1.3
+
+* Improve example app
+
 ## 0.1.2
 
 * Add example app
