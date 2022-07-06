@@ -1,3 +1,7 @@
+## 0.2.0
+
+* Improve code
+
 ## 0.1.4
 
 * Improve example app
