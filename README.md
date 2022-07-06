@@ -7,18 +7,21 @@ Features:
 * Request write permissions
 * Write mindful minutes
 
-This works on iOS 12.
+This works on iOS 12 (other pub.dev health plugins require a higher iOS version, so I created my own).
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+* Add to pubspec.yaml
+* Use plugin in your code (see examples of all methods below)
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
 ```dart
-const like = 'sample';
+final _plugin = MindfulMinutesPlugin();
+
+final bool hasPermission = await _plugin.checkPermission();
+
+final bool isPermissionGranted = await _plugin.requestPermission();
+
+await _plugin.writeMindfulMinutes(startTime, endTime);
 ```
