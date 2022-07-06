@@ -3,8 +3,8 @@
 Plugin for writing mindful minutes to Apple Health on iOS.
 
 Features:
-* Check for write permissions
-* Request write permissions
+* Check for write permission
+* Request write permission
 * Write mindful minutes
 
 This works on iOS 12 (other pub.dev health plugins require a higher iOS version, so I created my own).
