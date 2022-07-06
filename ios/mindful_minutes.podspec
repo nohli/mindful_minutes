@@ -4,7 +4,7 @@
 Pod::Spec.new do |s|
     s.name             = 'mindful_minutes'
     s.version          = '0.0.1'
-    s.summary          = 'A Flutter package for saving mindful minutes to Apple Health.'
+    s.summary          = 'A Flutter plugin for saving mindful minutes to Apple Health.'
     s.description      = <<-DESC
   A new Flutter plugin.
                          DESC
