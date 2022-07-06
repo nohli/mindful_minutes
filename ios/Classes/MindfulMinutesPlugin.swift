@@ -47,8 +47,8 @@ public class MindfulMinutesPlugin: NSObject, FlutterPlugin {
     
     func _saveMindfulMinutes(call: FlutterMethodCall, result: @escaping FlutterResult) throws {
         guard let arguments = call.arguments as? NSDictionary,
-              let startTime = (arguments["startTime"] as? NSNumber),
-              let endTime = (arguments["endTime"] as? NSNumber)
+              let startTime = arguments["startTime"] as? NSNumber,
+              let endTime = arguments["endTime"] as? NSNumber,
         else {
             throw PluginError(message: "Invalid Arguments")
         }
