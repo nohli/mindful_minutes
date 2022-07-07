@@ -1,3 +1,7 @@
+## 0.2.1
+
+* Improve documentation
+
 ## 0.2.0
 
 * Improve code

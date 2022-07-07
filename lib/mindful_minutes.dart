@@ -6,14 +6,15 @@ import 'package:flutter/services.dart';
 class MindfulMinutesPlugin {
   static const MethodChannel _channel = MethodChannel('mindful_minutes');
 
-  /// Checks if the app has writing permissions for mindful minutes.
+  /// Checks if the app has permission to write mindful minutes to Apple Health.
+  /// Returns a bool with the writing permission status.
   /// Returns false if the call was not successful.
   Future<bool> checkPermission() async {
     return await _channel.invokeMethod<bool?>('checkPermission') ?? false;
   }
 
-  /// Checks if the app has writing permissions for mindful minutes.
-  /// Returns false if the call was not successful.
+  /// Requests the permission for writing mindful minutes to Apple Health.
+  /// Returns a bool whether the request was successful.
   Future<bool> requestPermission() async {
     return await _channel.invokeMethod<bool?>('requestPermission') ?? false;
   }
