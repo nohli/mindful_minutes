@@ -1,3 +1,7 @@
+## 0.2.2
+
+* Improve pub.dev metadata
+
 ## 0.2.1
 
 * Improve documentation
