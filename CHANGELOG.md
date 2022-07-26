@@ -1,3 +1,7 @@
+## 0.2.4
+
+* Small code improvements
+
 ## 0.2.3
 
 * Improve pub.dev metadata
