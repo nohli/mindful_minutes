@@ -44,7 +44,6 @@ class _MyAppState extends State<MyApp> {
       }
     } catch (error) {
       // Show an error message
-
       if (kDebugMode) rethrow;
     }
   }
