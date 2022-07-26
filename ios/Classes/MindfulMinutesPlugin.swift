@@ -18,14 +18,18 @@ public class MindfulMinutesPlugin: NSObject, FlutterPlugin {
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        if (call.method.elementsEqual("checkPermission")){
+        switch (call.method) {
+        case "checkPermission":
             try! _checkPermission(call: call, result: result)
-        }
-        else if (call.method.elementsEqual("requestPermission")){
+            break;
+        case "requestPermission":
             try! _requestPermission(call: call, result: result)
-        }
-        else if (call.method.elementsEqual("saveMindfulMinutes")){
+            break;
+        case "saveMindfulMinutes":
             try! _saveMindfulMinutes(call: call, result: result)
+            break;
+        default:
+            break;
         }
     }
     
