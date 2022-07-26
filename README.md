@@ -21,7 +21,7 @@ final _plugin = MindfulMinutesPlugin();
 
 final bool hasPermission = await _plugin.checkPermission();
 
-final bool isPermissionGranted = await _plugin.requestPermission();
+final bool hasPermission = await _plugin.requestPermission();
 
 await _plugin.writeMindfulMinutes(startTime, endTime);
 ```
