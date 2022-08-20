@@ -1,3 +1,7 @@
+## 0.2.5
+
+* Lower sdk constraints
+
 ## 0.2.4
 
 * Small code improvements
