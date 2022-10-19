@@ -1,3 +1,9 @@
+## 1.0.0
+
+* Release stable version
+* Add more GitHub Actions for checking code quality
+* Add dependabot
+
 ## 0.2.5
 
 * Lower sdk constraints
