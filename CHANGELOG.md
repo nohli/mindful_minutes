@@ -1,3 +1,7 @@
+## 1.0.1
+
+* Remove `pubspec.lock` from package
+
 ## 1.0.0
 
 * Release stable version
