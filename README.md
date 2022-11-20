@@ -13,6 +13,12 @@ This works on iOS 12 (other pub.dev health plugins require a higher iOS version,
 
 * Add to pubspec.yaml
 * Use plugin in your code (see examples of all methods below)
+* Add permission for [NSHealthUpdateUsageDescription](https://developer.apple.com/documentation/bundleresources/information_property_list/nshealthupdateusagedescription) to `ios/Runner/info.plist`:
+
+```
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>This app would like to save mindful minutes.</string>
+```
 
 ## Usage
 
@@ -25,3 +31,7 @@ final bool hasPermission = await _plugin.requestPermission();
 
 await _plugin.writeMindfulMinutes(startTime, endTime);
 ```
+
+## Important
+
+iOS will ask the user only once per app for granting permissions. If the user disables it from iOS settings, it needs to be disabled from iOS settings.
