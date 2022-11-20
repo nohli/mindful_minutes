@@ -45,6 +45,7 @@ jobs:
         run: flutter pub get
       - name: Pod install
         run: |
+          cd example
           cd ios
           pod install
           cd ..
