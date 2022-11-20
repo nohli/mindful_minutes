@@ -25,10 +25,10 @@ jobs:
         run: flutter config --no-analytics
       - name: Flutter pub get
         run: flutter pub get
-      - name: Go to example directory
-        run: cd example
       - name: Flutter build appbundle
-        run: flutter build appbundle --release
+        run: |
+          cd example
+          flutter build appbundle --release
 
   build_ios:
     name: Build example for iOS
@@ -43,12 +43,12 @@ jobs:
         run: flutter config --no-analytics
       - name: Flutter pub get
         run: flutter pub get
-      - name: Go to example directory
-        run: cd example
       - name: Pod install
         run: |
+          cd example
           cd ios
           pod install
-          cd ..
       - name: Flutter build iOS
-        run: flutter build ios --release --no-codesign
+        run: |
+          cd example
+          flutter build ios --release --no-codesign
