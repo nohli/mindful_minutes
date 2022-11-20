@@ -1,3 +1,7 @@
+## 1.0.2+1
+
+* Update README with instructions on how to add `NSHealthUpdateUsageDescription`
+
 ## 1.0.2
 
 * Lower min SDK constraint to `2.12.0`
