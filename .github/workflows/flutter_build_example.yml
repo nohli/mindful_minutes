@@ -23,10 +23,10 @@ jobs:
         uses: subosito/flutter-action@v2
       - name: Disable analytics
         run: flutter config --no-analytics
-      - name: Go to example directory
-        run: cd example
       - name: Flutter pub get
         run: flutter pub get
+      - name: Go to example directory
+        run: cd example
       - name: Flutter build appbundle
         run: flutter build appbundle --release
 
@@ -41,10 +41,10 @@ jobs:
         uses: subosito/flutter-action@v2
       - name: Disable analytics
         run: flutter config --no-analytics
-      - name: Go to example directory
-        run: cd example
       - name: Flutter pub get
         run: flutter pub get
+      - name: Go to example directory
+        run: cd example
       - name: Pod install
         run: |
           cd ios
