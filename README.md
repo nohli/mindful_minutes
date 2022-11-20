@@ -13,9 +13,11 @@ This works on iOS 12 (other pub.dev health plugins require a higher iOS version,
 
 * Add to pubspec.yaml
 * Use plugin in your code (see examples of all methods below)
-* Add permission for [NSHealthUpdateUsageDescription](https://developer.apple.com/documentation/bundleresources/information_property_list/nshealthupdateusagedescription) to `ios/Runner/info.plist`:
+* Add permission for [NSHealthShareUsageDescription](https://developer.apple.com/documentation/bundleresources/information_property_list/nshealthshareusagedescription) and [NSHealthUpdateUsageDescription](https://developer.apple.com/documentation/bundleresources/information_property_list/nshealthupdateusagedescription) to `ios/Runner/info.plist`:
 
 ```
+	<key>NSHealthShareUsageDescription</key>
+	<string>This app would like to access mindful minutes.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>This app would like to save mindful minutes.</string>
 ```

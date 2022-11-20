@@ -1,3 +1,7 @@
+## 1.0.2+2
+
+* Update README with instructions on how to add `NSHealthShareUsageDescription`
+
 ## 1.0.2+1
 
 * Update README with instructions on how to add `NSHealthUpdateUsageDescription`
