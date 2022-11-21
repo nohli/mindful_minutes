@@ -36,4 +36,4 @@ await _plugin.writeMindfulMinutes(startTime, endTime);
 
 ## Important
 
-iOS will ask the user only once per app for granting permissions. If the user disables it from iOS settings, it needs to be disabled from iOS settings.
+iOS will ask the user only once per app for granting permissions. If the user disables it from iOS settings, it needs to be enabled from iOS settings.
