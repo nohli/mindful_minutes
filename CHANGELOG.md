@@ -1,3 +1,7 @@
+## 1.1.0
+
+* Update version in podspec
+
 ## 1.0.2+2
 
 * Update README with instructions on how to add `NSHealthShareUsageDescription`
