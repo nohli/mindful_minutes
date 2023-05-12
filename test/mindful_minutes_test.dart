@@ -9,7 +9,8 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   void setMethodCallHandlerToReturnValue(bool? value) {
-    channel.setMockMethodCallHandler((MethodCall methodCall) async {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
       final method = methodCall.method;
       switch (method) {
         case 'checkPermission':
@@ -24,7 +25,9 @@ void main() {
     });
   }
 
-  tearDown(() => channel.setMockMethodCallHandler(null));
+  tearDown(() => TestDefaultBinaryMessengerBinding
+      .instance.defaultBinaryMessenger
+      .setMockMethodCallHandler(channel, (null)));
 
   group('method call handler returns true', () {
     setUp(() => setMethodCallHandlerToReturnValue(true));
