@@ -1,3 +1,7 @@
+## 1.1.1
+
+* Add topics to pubspec.yaml
+
 ## 1.1.0
 
 * Update version in podspec
