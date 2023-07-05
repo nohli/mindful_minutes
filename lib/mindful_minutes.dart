@@ -31,9 +31,9 @@ class MindfulMinutesPlugin {
     assert(!endTime.isBefore(startTime), 'startTime must be before endTime');
     Map<String, int> args = {
       'startTime': startTime.millisecondsSinceEpoch,
-      'endTime': endTime.millisecondsSinceEpoch
+      'endTime': endTime.millisecondsSinceEpoch,
     };
-    return await _channel.invokeMethod<bool?>('saveMindfulMinutes', args) ??
-        false;
+    final isSuccess = await _channel.invokeMethod<bool?>('saveMindfulMinutes', args);
+    return isSuccess ?? false;
   }
 }
