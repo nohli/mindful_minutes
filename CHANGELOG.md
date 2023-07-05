@@ -1,3 +1,7 @@
+## 1.2.0
+
+* Make `MindfulMinutesPlugin` const
+
 ## 1.1.1
 
 * Add topics to pubspec.yaml
