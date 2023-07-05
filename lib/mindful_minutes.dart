@@ -33,7 +33,7 @@ class MindfulMinutesPlugin {
       'startTime': startTime.millisecondsSinceEpoch,
       'endTime': endTime.millisecondsSinceEpoch,
     };
-    final isSuccess = await _channel.invokeMethod<bool?>('saveMindfulMinutes', args);
-    return isSuccess ?? false;
+    return await _channel.invokeMethod<bool?>('saveMindfulMinutes', args) ??
+        false;
   }
 }
