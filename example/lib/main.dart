@@ -14,7 +14,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _plugin = MindfulMinutesPlugin();
+  static const _plugin = MindfulMinutesPlugin();
 
   @override
   Widget build(BuildContext context) {

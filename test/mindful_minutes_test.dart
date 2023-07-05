@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mindful_minutes/mindful_minutes.dart';
 
 void main() {
-  final plugin = MindfulMinutesPlugin();
+  const plugin = MindfulMinutesPlugin();
   const channel = MethodChannel('mindful_minutes');
 
   TestWidgetsFlutterBinding.ensureInitialized();

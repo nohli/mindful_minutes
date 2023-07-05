@@ -4,6 +4,9 @@ import 'package:flutter/services.dart';
 
 /// The class for writing mindful minutes to Apple Health.
 class MindfulMinutesPlugin {
+  /// Creates a new instance of [MindfulMinutesPlugin].
+  const MindfulMinutesPlugin();
+
   static const MethodChannel _channel = MethodChannel('mindful_minutes');
 
   /// Checks if the app has permission to write mindful minutes to Apple Health.

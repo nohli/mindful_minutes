@@ -25,7 +25,7 @@ This works on iOS 12 (other pub.dev health plugins require a higher iOS version,
 ## Usage
 
 ```dart
-final _plugin = MindfulMinutesPlugin();
+const _plugin = MindfulMinutesPlugin();
 
 final bool hasPermission = await _plugin.checkPermission();
 
