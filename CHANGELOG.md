@@ -1,3 +1,7 @@
+## 1.2.1
+
+* Refactor native code
+
 ## 1.2.0
 
 * Make `MindfulMinutesPlugin` const
