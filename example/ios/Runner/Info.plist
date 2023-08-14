@@ -47,5 +47,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSHealthShareUsageDescription</key>
+	<string>This app would like to access mindful minutes.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>This app would like to save mindful minutes.</string>
 </dict>
 </plist>
