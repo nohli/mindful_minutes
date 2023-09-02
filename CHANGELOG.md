@@ -1,7 +1,7 @@
 ## 1.2.2
 
 * Maintenance release
-* Update flutter_lints
+* Update `flutter_lints`
 
 ## 1.2.1
 
