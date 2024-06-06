@@ -1,3 +1,7 @@
+## 1.2.4
+
+* Maintenance release
+
 ## 1.2.3
 
 * Update podspec version

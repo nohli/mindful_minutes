@@ -1,6 +1,6 @@
 PODS:
   - Flutter (1.0.0)
-  - mindful_minutes (1.2.3):
+  - mindful_minutes (1.2.4):
     - Flutter
 
 DEPENDENCIES:
@@ -14,9 +14,9 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/mindful_minutes/ios"
 
 SPEC CHECKSUMS:
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  mindful_minutes: 3b342a476753b2e3c06727a6bee6dd4f984aefa8
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  mindful_minutes: ae2bc227696946728fff26436627d2764b212aa7
 
 PODFILE CHECKSUM: 4e8f8b2be68aeea4c0d5beb6ff1e79fface1d048
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.15.2
