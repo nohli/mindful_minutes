@@ -1,3 +1,7 @@
+## 1.2.5
+
+* Maintenance release
+
 ## 1.2.4
 
 * Maintenance release
