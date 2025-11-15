@@ -1,5 +1,3 @@
-library mindful_minutes;
-
 import 'package:flutter/services.dart';
 
 /// The class for writing mindful minutes to Apple Health.
