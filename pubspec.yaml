@@ -1,6 +1,6 @@
 name: mindful_minutes
-description: A Flutter plugin for saving mindful minutes to Apple Health.
 
+description: A Flutter plugin for saving mindful minutes to Apple Health.
 repository: https://github.com/nohli/mindful_minutes
 issue_tracker: https://github.com/nohli/mindful_minutes/issues
 
@@ -11,18 +11,18 @@ topics:
   - native
   - ios
 
-version: 1.2.5
+version: 2.0.0
 
 environment:
-  sdk: '>=2.12.0 <4.0.0'
-  flutter: '>=2.0.0'
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.10.0'
 
 dependencies:
   flutter:
     sdk: flutter
 
 dev_dependencies:
-  flutter_lints: ">=2.0.0 <7.0.0"
+  flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
 

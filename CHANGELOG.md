@@ -1,3 +1,8 @@
+## 2.0.0
+
+* Breaking: Flutter SDK constraint is now >=3.10.0 (Dart 3-only). Apps on older Flutter versions can’t upgrade.
+* Update Android tooling
+
 ## 1.2.5
 
 * Maintenance release
