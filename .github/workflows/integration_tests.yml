@@ -39,10 +39,10 @@ jobs:
       - name: Boot iOS simulator
         id: boot_simulator
         uses: futureware-tech/simulator-action@v4
+        udid: udid
         with:
           os_version: ${{ matrix.os-version }}
           model: ${{ matrix.model }}
-          udid: udid
 
       - name: Run integration tests on iOS
         run: |
