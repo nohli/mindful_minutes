@@ -37,11 +37,14 @@ jobs:
           flutter pub get
 
       - name: Boot iOS simulator
+        id: boot_simulator
         uses: futureware-tech/simulator-action@v4
         with:
           os_version: ${{ matrix.os-version }}
           model: ${{ matrix.model }}
+          udid: udid
 
       - name: Run integration tests on iOS
         run: |
-          cd example && flutter test integration_test -d "$SIMULATOR_UDID"
+          cd example
+          flutter test integration_test -d "${{ steps.boot_simulator.outputs.udid }}"
