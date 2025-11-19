@@ -1,3 +1,8 @@
+## 2.0.1
+
+* Add integration test coverage for the example app
+* Add GitHub Actions workflow to run the example integration tests against iOS simulators
+
 ## 2.0.0
 
 * Breaking: Flutter SDK constraint is now >=3.10.0 (Dart 3-only). Apps on older Flutter versions can’t upgrade.
