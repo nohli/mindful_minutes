@@ -39,8 +39,8 @@ jobs:
       - name: Boot iOS simulator
         uses: futureware-tech/simulator-action@v4
         with:
-          model: ${{ matrix.model }}
           os_version: ${{ matrix.os-version }}
+          model: ${{ matrix.model }}
 
       - name: Run integration tests on iOS
         run: |
