@@ -40,7 +40,7 @@ jobs:
         uses: futureware-tech/simulator-action@v4
         with:
           model: ${{ matrix.model }}
-          os: ${{ matrix.os-version }}
+          os_version: ${{ matrix.os-version }}
 
       - name: Run integration tests on iOS
         run: |
