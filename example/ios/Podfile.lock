@@ -1,22 +1,28 @@
 PODS:
   - Flutter (1.0.0)
+  - integration_test (0.0.1):
+    - Flutter
   - mindful_minutes (1.2.4):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - mindful_minutes (from `.symlinks/plugins/mindful_minutes/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
   mindful_minutes:
     :path: ".symlinks/plugins/mindful_minutes/ios"
 
 SPEC CHECKSUMS:
-  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  mindful_minutes: ae2bc227696946728fff26436627d2764b212aa7
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  integration_test: 4a889634ef21a45d28d50d622cf412dc6d9f586e
+  mindful_minutes: 801dcda640b6f362e7d9e1642a92268c9b7dc63f
 
-PODFILE CHECKSUM: 4e8f8b2be68aeea4c0d5beb6ff1e79fface1d048
+PODFILE CHECKSUM: cc1f88378b4bfcf93a6ce00d2c587857c6008d3b
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2
