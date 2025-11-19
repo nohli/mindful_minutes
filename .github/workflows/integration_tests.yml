@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os-version: ['iOS 18.6', 'iOS 26.0']
+        os-version: ['18.6', '26.0']
         model: ['iPhone SE (3rd generation)', 'iPhone 16', 'iPhone 16 Pro Max']
 
     steps:
