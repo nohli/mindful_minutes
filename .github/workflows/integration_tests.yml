@@ -41,16 +41,7 @@ jobs:
         with:
           model: ${{ matrix.model }}
           os: ${{ matrix.os-version }}
-          arch: "arm64"
 
       - name: Run integration tests on iOS
         run: |
           cd example && flutter test integration_test -d "$SIMULATOR_UDID"
-
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: ios-integration-test-results
-          path: example/build/reports/
-          if-no-files-found: ignore
