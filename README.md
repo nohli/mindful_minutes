@@ -39,7 +39,7 @@ await _plugin.writeMindfulMinutes(startTime, endTime);
 iOS will ask the user only once per app for granting permissions. If the user disables it from iOS settings, it needs to be enabled from iOS settings.
 
 
-### iOS: SwiftPM vs CocoaPods
+## iOS: SwiftPM vs CocoaPods
 
 Flutter can consume this plugin via Swift Package Manager (SPM) or CocoaPods. SPM support in Flutter is still experimental:
 
