@@ -43,7 +43,7 @@ iOS will ask the user only once per app for granting permissions. If the user di
 
 Flutter can consume this plugin via Swift Package Manager (SPM) or CocoaPods. SPM support in Flutter is still experimental:
 
-1) To enable SPM (Flutter 3.22+): `flutter config --enable-swift-package-manager` or add to `pubspec.yaml`:
+1) To enable SPM (Flutter 3.24+): `flutter config --enable-swift-package-manager` or add to `pubspec.yaml`:
    ```yaml
    flutter:
      config:
