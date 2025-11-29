@@ -31,7 +31,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-          cache: true
+#          cache: true
 
       - name: Disable analytics
         run: flutter config --no-analytics
