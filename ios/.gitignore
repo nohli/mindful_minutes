@@ -1,0 +1,10 @@
+.symlinks/
+.plugin_symlinks/
+Pods/
+.generated/
+
+.DS_Store
+.build/
+.swiftpm/
+*.swp
+profile

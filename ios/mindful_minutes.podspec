@@ -12,8 +12,7 @@ Pod::Spec.new do |s|
     s.license          = { :file => '../LICENSE' }
     s.author           = { 'Joachim Nohl' => 'achimsapps@gmail.com' }
     s.source           = { :path => '.' }
-    s.source_files = 'Classes/**/*'
-    s.public_header_files = 'Classes/**/*.h'
+    s.source_files = 'mindful_minutes/Sources/mindful_minutes/**/*.swift'
     s.dependency 'Flutter'
     s.swift_version = '5.0'
     s.ios.deployment_target = '12.0'
