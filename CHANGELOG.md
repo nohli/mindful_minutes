@@ -1,3 +1,7 @@
+## 2.0.2
+
+* Add Swift Package Manager (SPM) support for iOS.
+
 ## 2.0.1
 
 * Add integration test coverage for the example app
