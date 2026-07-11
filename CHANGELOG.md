@@ -1,3 +1,8 @@
+## 2.0.3
+
+* Fix iOS Swift Package Manager build by linking `FlutterFramework` in
+  `Package.swift`.
+
 ## 2.0.2+1
 
 * Update readme

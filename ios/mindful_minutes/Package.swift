@@ -12,11 +12,15 @@ let package = Package(
         // Match Flutter's generated SwiftPM expectation (`mindful-minutes`).
         .library(name: "mindful-minutes", type: .dynamic, targets: ["mindful_minutes"])
     ],
-    dependencies: [],
+    dependencies: [
+        .package(name: "FlutterFramework", path: "../FlutterFramework")
+    ],
     targets: [
         .target(
             name: "mindful_minutes",
-            dependencies: []
+            dependencies: [
+                .product(name: "FlutterFramework", package: "FlutterFramework")
+            ]
         )
     ]
 )
