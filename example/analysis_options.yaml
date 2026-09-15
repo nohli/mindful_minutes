@@ -1,6 +1,9 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
+  exclude:
+    - build/**
+    - ios/**
   language:
     strict-casts: true
     strict-inference: true
@@ -8,7 +11,6 @@ analyzer:
 linter:
   rules:
     - always_put_required_named_parameters_first
-    - lines_longer_than_80_chars
     - public_member_api_docs
     - prefer_single_quotes
     - sort_child_properties_last
