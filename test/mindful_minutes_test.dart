@@ -7,17 +7,19 @@ void main() {
   const channel = MethodChannel('mindful_minutes');
 
   TestWidgetsFlutterBinding.ensureInitialized();
+  final startTime = DateTime.fromMillisecondsSinceEpoch(0, isUtc: true);
+  final endTime = startTime.add(const Duration(minutes: 1));
 
   void setMethodCallHandlerToReturnValue(bool? value) {
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(channel,
+        (MethodCall methodCall) async {
       final method = methodCall.method;
       switch (method) {
         case 'checkPermission':
           return value;
         case 'requestPermission':
           return value;
-        case 'writeMindfulMinutes':
+        case 'saveMindfulMinutes':
           return value;
         default:
           throw UnimplementedError('$method not implemented');
@@ -25,9 +27,8 @@ void main() {
     });
   }
 
-  tearDown(() => TestDefaultBinaryMessengerBinding
-      .instance.defaultBinaryMessenger
-      .setMockMethodCallHandler(channel, (null)));
+  tearDown(() =>
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(channel, (null)));
 
   group('method call handler returns true', () {
     setUp(() => setMethodCallHandlerToReturnValue(true));
@@ -40,9 +41,8 @@ void main() {
       expect(await plugin.requestPermission(), true);
     });
 
-    test('saveMindfulMinutes returns correct value of method channel',
-        () async {
-      expect(await plugin.requestPermission(), true);
+    test('saveMindfulMinutes returns correct value of method channel', () async {
+      expect(await plugin.writeMindfulMinutes(startTime, endTime), true);
     });
   });
 
@@ -57,9 +57,8 @@ void main() {
       expect(await plugin.requestPermission(), false);
     });
 
-    test('saveMindfulMinutes returns correct value of method channel',
-        () async {
-      expect(await plugin.requestPermission(), false);
+    test('saveMindfulMinutes returns correct value of method channel', () async {
+      expect(await plugin.writeMindfulMinutes(startTime, endTime), false);
     });
   });
 
@@ -70,14 +69,12 @@ void main() {
       expect(await plugin.checkPermission(), false);
     });
 
-    test('requestPermission returns false if method call returns null',
-        () async {
+    test('requestPermission returns false if method call returns null', () async {
       expect(await plugin.requestPermission(), false);
     });
 
-    test('saveMindfulMinutes returns false if method call returns null',
-        () async {
-      expect(await plugin.requestPermission(), false);
+    test('saveMindfulMinutes returns false if method call returns null', () async {
+      expect(await plugin.writeMindfulMinutes(startTime, endTime), false);
     });
   });
 }
