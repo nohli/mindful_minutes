@@ -48,6 +48,7 @@ jobs:
         with:
           os_version: ${{ matrix.os-version }}
           model: ${{ matrix.model }}
+          wait_for_boot: true
 
       - name: Run integration tests on iOS
         run: |
