@@ -15,7 +15,7 @@ jobs:
   integration_test_ios:
     name: iOS ${{ matrix.os-version }} - ${{ matrix.model }}
     runs-on: macos-latest
-    timeout-minutes: 20
+    timeout-minutes: 35
     strategy:
       fail-fast: false
       matrix:
@@ -51,6 +51,7 @@ jobs:
           wait_for_boot: true
 
       - name: Run integration tests on iOS
+        timeout-minutes: 20
         run: |
           cd example
           flutter test integration_test -d "${{ steps.boot_simulator.outputs.udid }}"
