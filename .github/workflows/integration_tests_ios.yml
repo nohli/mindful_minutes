@@ -84,4 +84,4 @@ jobs:
         timeout-minutes: 15
         run: |
           cd example
-          flutter test integration_test -d "${{ steps.boot_simulator.outputs.udid }}"
+          flutter test integration_test/mindful_minutes_integration_test.dart -d "${{ steps.boot_simulator.outputs.udid }}"
