@@ -35,10 +35,6 @@ on:
       - 'example/integration_test/unsupported_platform_integration_test.dart'
       - 'example/test/**'
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
-
 jobs:
   integration_test_ios:
     name: iOS ${{ matrix.os-version }} - ${{ matrix.model }}
@@ -92,6 +88,7 @@ jobs:
             -project ios/Runner.xcodeproj \
             -scheme Runner \
             -destination "platform=iOS Simulator,id=${{ steps.boot_simulator.outputs.udid }}" \
+            -parallel-testing-enabled NO \
             -resultBundlePath "$RUNNER_TEMP/mindful_minutes.xcresult" \
             CODE_SIGNING_ALLOWED=NO
 
