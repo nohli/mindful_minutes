@@ -89,6 +89,9 @@ jobs:
             -scheme Runner \
             -destination "platform=iOS Simulator,id=${{ steps.boot_simulator.outputs.udid }}" \
             -parallel-testing-enabled NO \
+            -test-timeouts-enabled YES \
+            -default-test-execution-time-allowance 300 \
+            -maximum-test-execution-time-allowance 300 \
             -resultBundlePath "$RUNNER_TEMP/mindful_minutes.xcresult" \
             CODE_SIGNING_ALLOWED=NO
 
