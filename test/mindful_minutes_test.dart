@@ -112,5 +112,10 @@ void main() {
       expect(await plugin.writeMindfulMinutes(startTime, endTime), false);
       expect(channelCalls, 0);
     });
+
+    test('writeMindfulMinutes returns false for an invalid date range without a channel call', () async {
+      expect(await plugin.writeMindfulMinutes(endTime, startTime), false);
+      expect(channelCalls, 0);
+    });
   });
 }

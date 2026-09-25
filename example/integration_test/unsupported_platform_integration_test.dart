@@ -16,6 +16,7 @@ void main() {
       expect(await plugin.checkPermission(), false);
       expect(await plugin.requestPermission(), false);
       expect(await plugin.writeMindfulMinutes(startTime, endTime), false);
+      expect(await plugin.writeMindfulMinutes(endTime, startTime), false);
     },
     skip: defaultTargetPlatform != TargetPlatform.android,
   );

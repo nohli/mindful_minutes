@@ -31,8 +31,8 @@ class MindfulMinutesPlugin {
     DateTime startTime,
     DateTime endTime,
   ) async {
-    assert(!endTime.isBefore(startTime), 'startTime must be before endTime');
     if (!_isSupported) return false;
+    assert(!endTime.isBefore(startTime), 'startTime must be before endTime');
     Map<String, int> args = {
       'startTime': startTime.millisecondsSinceEpoch,
       'endTime': endTime.millisecondsSinceEpoch,
