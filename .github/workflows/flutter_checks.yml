@@ -75,7 +75,7 @@ jobs:
 
       - name: Run Dart analyze
         timeout-minutes: 10
-        run: dart analyze
+        run: dart analyze --fatal-infos
 
   test:
     name: Flutter test
