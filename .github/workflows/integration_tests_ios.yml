@@ -35,10 +35,6 @@ on:
       - 'example/integration_test/unsupported_platform_integration_test.dart'
       - 'example/test/**'
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
-
 jobs:
   integration_test_ios:
     name: iOS ${{ matrix.os-version }} - ${{ matrix.model }}
@@ -78,10 +74,30 @@ jobs:
           model: ${{ matrix.model }}
           wait_for_boot: true
 
-      - name: Run integration tests on iOS
-        # Flutter can intermittently hang after the Xcode build while waiting
-        # for the VM service: https://github.com/flutter/flutter/issues/181771
+      - name: Configure iOS integration test
+        run: |
+          cd example
+          flutter build ios --config-only --simulator --debug --no-pub \
+            integration_test/mindful_minutes_integration_test.dart
+
+      - name: Run integration test on iOS
         timeout-minutes: 15
         run: |
           cd example
-          flutter test integration_test -d "${{ steps.boot_simulator.outputs.udid }}"
+          xcodebuild test \
+            -project ios/Runner.xcodeproj \
+            -scheme Runner \
+            -destination "platform=iOS Simulator,id=${{ steps.boot_simulator.outputs.udid }}" \
+            -parallel-testing-enabled NO \
+            -test-timeouts-enabled YES \
+            -default-test-execution-time-allowance 300 \
+            -maximum-test-execution-time-allowance 300 \
+            -resultBundlePath "$RUNNER_TEMP/mindful_minutes.xcresult"
+
+      - name: Upload XCTest results
+        if: failure()
+        uses: actions/upload-artifact@v6
+        with:
+          name: mindful-minutes-xcresult-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/mindful_minutes.xcresult
+          if-no-files-found: error
