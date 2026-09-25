@@ -15,7 +15,7 @@ jobs:
   integration_test_ios:
     name: iOS ${{ matrix.os-version }} - ${{ matrix.model }}
     runs-on: macos-latest
-    timeout-minutes: 35
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -51,7 +51,9 @@ jobs:
           wait_for_boot: true
 
       - name: Run integration tests on iOS
-        timeout-minutes: 20
+        # Flutter can intermittently hang after the Xcode build while waiting
+        # for the VM service: https://github.com/flutter/flutter/issues/181771
+        timeout-minutes: 10
         run: |
           cd example
           flutter test integration_test -d "${{ steps.boot_simulator.outputs.udid }}"
