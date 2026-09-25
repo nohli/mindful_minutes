@@ -9,6 +9,8 @@ Features:
 
 This works on iOS 12 (other pub.dev health plugins require a higher iOS version, so I created my own).
 
+The package is iOS-only. On other platforms, its methods return `false` without calling native code.
+
 ## Getting started
 
 * Add to pubspec.yaml

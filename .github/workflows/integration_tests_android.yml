@@ -1,4 +1,4 @@
-name: Integration Tests (iOS)
+name: Integration Tests (Android)
 
 on:
   workflow_dispatch:
@@ -9,13 +9,16 @@ on:
       - '.github/dependabot.yml'
       - '.github/workflows/flutter_build_example.yml'
       - '.github/workflows/flutter_checks.yml'
+      - '.github/workflows/integration_tests_ios.yml'
       - '.github/workflows/pub_publish.yml'
       - '.github/workflows/pub_publish_dry_run.yml'
       - '.github/workflows/pub_score.yml'
       - 'analysis_options.yaml'
+      - 'ios/**'
       - 'test/**'
       - 'example/analysis_options.yaml'
-      - 'example/integration_test/unsupported_platform_integration_test.dart'
+      - 'example/integration_test/mindful_minutes_integration_test.dart'
+      - 'example/ios/**'
       - 'example/test/**'
   push:
     branches:
@@ -26,13 +29,16 @@ on:
       - '.github/dependabot.yml'
       - '.github/workflows/flutter_build_example.yml'
       - '.github/workflows/flutter_checks.yml'
+      - '.github/workflows/integration_tests_ios.yml'
       - '.github/workflows/pub_publish.yml'
       - '.github/workflows/pub_publish_dry_run.yml'
       - '.github/workflows/pub_score.yml'
       - 'analysis_options.yaml'
+      - 'ios/**'
       - 'test/**'
       - 'example/analysis_options.yaml'
-      - 'example/integration_test/unsupported_platform_integration_test.dart'
+      - 'example/integration_test/mindful_minutes_integration_test.dart'
+      - 'example/ios/**'
       - 'example/test/**'
 
 concurrency:
@@ -40,20 +46,25 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  integration_test_ios:
-    name: iOS ${{ matrix.os-version }} - ${{ matrix.model }}
-    runs-on: macos-latest
+  integration_test:
+    name: Android API ${{ matrix.api-level }} - ${{ matrix.profile }}
+    runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
-        # https://github.com/futureware-tech/simulator-action/wiki/Devices-macos-latest
-        os-version: ['26.2']
-        model: ['iPhone 17']
+        api-level: [24, 30, 35]
+        profile: [medium_phone]
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 17
 
       - name: Install Flutter
         uses: subosito/flutter-action@v2
@@ -70,18 +81,17 @@ jobs:
           cd example
           flutter pub get
 
-      - name: Boot iOS simulator
-        id: boot_simulator
-        uses: futureware-tech/simulator-action@v5
-        with:
-          os_version: ${{ matrix.os-version }}
-          model: ${{ matrix.model }}
-          wait_for_boot: true
-
-      - name: Run integration tests on iOS
-        # Flutter can intermittently hang after the Xcode build while waiting
-        # for the VM service: https://github.com/flutter/flutter/issues/181771
-        timeout-minutes: 10
+      - name: Enable emulator hardware acceleration (KVM)
         run: |
-          cd example
-          flutter test integration_test -d "${{ steps.boot_simulator.outputs.udid }}"
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Boot emulator and run integration tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          profile: ${{ matrix.profile }}
+          arch: x86_64
+          script: |
+            cd example && flutter test integration_test/unsupported_platform_integration_test.dart
