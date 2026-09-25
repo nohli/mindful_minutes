@@ -1,3 +1,13 @@
+## 2.0.4
+
+* Refresh the example app with Flutter 3.47.5 and add an Android runner.
+* Add Android integration coverage for API levels 24, 30, and 35 alongside
+  the existing iOS coverage.
+* Return `false` directly on Android and other unsupported platforms without
+  calling native code. iOS behavior is unchanged.
+* Strengthen package validation with direct analysis and pub-score checks,
+  tests, and a publish dry run.
+
 ## 2.0.3
 
 * Fix iOS Swift Package Manager build by linking `FlutterFramework` in
