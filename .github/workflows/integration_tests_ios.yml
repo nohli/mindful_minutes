@@ -96,7 +96,7 @@ jobs:
 
       - name: Upload XCTest results
         if: failure()
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: mindful-minutes-xcresult-${{ github.run_attempt }}
           path: ${{ runner.temp }}/mindful_minutes.xcresult
