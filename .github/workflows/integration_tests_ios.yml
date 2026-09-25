@@ -78,10 +78,18 @@ jobs:
           model: ${{ matrix.model }}
           wait_for_boot: true
 
-      - name: Run integration tests on iOS
-        # Flutter can intermittently hang after the Xcode build while waiting
-        # for the VM service: https://github.com/flutter/flutter/issues/181771
+      - name: Configure iOS integration test
+        run: |
+          cd example
+          flutter build ios --config-only --simulator --debug --no-pub \
+            integration_test/mindful_minutes_integration_test.dart
+
+      - name: Run integration test on iOS
         timeout-minutes: 15
         run: |
           cd example
-          flutter test integration_test/mindful_minutes_integration_test.dart -d "${{ steps.boot_simulator.outputs.udid }}"
+          xcodebuild -quiet test \
+            -project ios/Runner.xcodeproj \
+            -scheme Runner \
+            -destination "platform=iOS Simulator,id=${{ steps.boot_simulator.outputs.udid }}" \
+            CODE_SIGNING_ALLOWED=NO
