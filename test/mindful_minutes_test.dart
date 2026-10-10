@@ -37,6 +37,16 @@ void main() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(channel, null);
   });
 
+  test('reversed intervals throw ArgumentError without a native call', () async {
+    var calls = 0;
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(channel, (call) async {
+      calls++;
+      return true;
+    });
+    await expectLater(plugin.writeMindfulMinutes(endTime, startTime), throwsArgumentError);
+    expect(calls, 0);
+  });
+
   group('method call handler returns true', () {
     setUp(() => setMethodCallHandlerToReturnValue(true));
 

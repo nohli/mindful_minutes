@@ -1,16 +1,14 @@
 # mindful_minutes_example
 
-Demonstrates how to use the mindful_minutes plugin.
+Checks write permission, requests Apple Health authorization and saves a one-minute mindful session. Permission must be granted before saving. On non-iOS platforms, the plugin reports false.
 
-## Getting Started
+Flutter 3.44 or newer for this checked-in native example.
 
-This project is a starting point for a Flutter application.
+For iOS device builds, enable HealthKit and configure signing as described in the [package setup](../README.md#getting-started). The example includes its HealthKit entitlement and purpose descriptions.
 
-A few resources to get you started if this is your first Flutter project:
+From this directory, select a compatible Flutter SDK with FVM, then run:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```sh
+fvm flutter pub get
+fvm flutter run -d <device-id>
+```

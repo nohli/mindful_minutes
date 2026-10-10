@@ -37,13 +37,14 @@ on:
 
 jobs:
   integration_test_ios:
-    name: iOS ${{ matrix.os-version }} - ${{ matrix.model }}
+    name: iOS ${{ matrix.package-manager }} ${{ matrix.os-version }} - ${{ matrix.model }}
     runs-on: macos-latest
-    timeout-minutes: 20
+    timeout-minutes: 35
     strategy:
       fail-fast: false
       matrix:
         # https://github.com/futureware-tech/simulator-action/wiki/Devices-macos-latest
+        package-manager: ['SwiftPM', 'CocoaPods']
         os-version: ['26.2']
         model: ['iPhone 17']
 
@@ -57,14 +58,30 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Disable analytics
-        run: flutter config --no-analytics
-
-      - name: Flutter pub get
+      - name: Configure dependency manager
         run: |
-          flutter pub get
-          cd example
-          flutter pub get
+          flutter config --no-analytics
+          if [ "${{ matrix.package-manager }}" = "SwiftPM" ]; then
+            flutter config --enable-swift-package-manager
+          else
+            flutter config --no-enable-swift-package-manager
+          fi
+
+      - name: Create integration test app
+        run: |
+          flutter create --empty --platforms=ios --org io.achim "$RUNNER_TEMP/mindful_integration"
+          cd "$RUNNER_TEMP/mindful_integration"
+          flutter pub add "mindful_minutes@{path: $GITHUB_WORKSPACE}" "dev:integration_test@{sdk: flutter}"
+          mkdir -p integration_test
+          cp "$GITHUB_WORKSPACE/example/integration_test/mindful_minutes_integration_test.dart" integration_test/
+          cp -R "$GITHUB_WORKSPACE/example/lib" example_lib
+          sed -i '' "s|package:mindful_minutes_example/main.dart|../example_lib/main.dart|" integration_test/mindful_minutes_integration_test.dart
+          cp "$GITHUB_WORKSPACE/example/ios/RunnerTests/RunnerTests.swift" ios/RunnerTests/
+          cp "$GITHUB_WORKSPACE/example/ios/Runner/Runner.entitlements" ios/Runner/
+          /usr/libexec/PlistBuddy -c 'Add :NSHealthUpdateUsageDescription string Save mindful minutes for integration testing.' ios/Runner/Info.plist
+          sed -i '' '/PRODUCT_BUNDLE_IDENTIFIER = /a\
+                        CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
+          ' ios/Runner.xcodeproj/project.pbxproj
 
       - name: Boot iOS simulator
         id: boot_simulator
@@ -76,28 +93,48 @@ jobs:
 
       - name: Configure iOS integration test
         run: |
-          cd example
+          cd "$RUNNER_TEMP/mindful_integration"
           flutter build ios --config-only --simulator --debug --no-pub \
             integration_test/mindful_minutes_integration_test.dart
 
       - name: Run integration test on iOS
         timeout-minutes: 15
         run: |
-          cd example
+          cd "$RUNNER_TEMP/mindful_integration"
+          if [ "${{ matrix.package-manager }}" = "SwiftPM" ]; then
+            container=(-project ios/Runner.xcodeproj)
+          else
+            container=(-workspace ios/Runner.xcworkspace)
+          fi
           xcodebuild test \
-            -project ios/Runner.xcodeproj \
+            "${container[@]}" \
             -scheme Runner \
             -destination "platform=iOS Simulator,id=${{ steps.boot_simulator.outputs.udid }}" \
             -parallel-testing-enabled NO \
             -test-timeouts-enabled YES \
             -default-test-execution-time-allowance 300 \
             -maximum-test-execution-time-allowance 300 \
-            -resultBundlePath "$RUNNER_TEMP/mindful_minutes.xcresult"
+            -resultBundlePath "$RUNNER_TEMP/mindful_minutes.xcresult" \
+            CODE_SIGNING_ALLOWED=NO
 
       - name: Upload XCTest results
         if: failure()
         uses: actions/upload-artifact@v7
         with:
-          name: mindful-minutes-xcresult-${{ github.run_attempt }}
+          name: mindful-minutes-${{ matrix.package-manager }}-xcresult-${{ github.run_attempt }}
           path: ${{ runner.temp }}/mindful_minutes.xcresult
           if-no-files-found: error
+
+      - name: Run native HealthKit contract tests
+        if: matrix.package-manager == 'SwiftPM'
+        timeout-minutes: 10
+        run: |
+          flutter create --empty --platforms=ios "$RUNNER_TEMP/mindful_native"
+          (cd "$RUNNER_TEMP/mindful_native" && flutter pub add "mindful_minutes@{path: $GITHUB_WORKSPACE}")
+          python3 .github/test_support/prepare_native_tests.py "$RUNNER_TEMP/mindful_native"
+          cd "$RUNNER_TEMP/mindful_native"
+          flutter build ios --config-only --simulator --debug
+          xcodebuild -quiet test -project ios/Runner.xcodeproj -scheme Runner \
+            -destination "platform=iOS Simulator,id=${{ steps.boot_simulator.outputs.udid }}" \
+            -only-testing:RunnerTests/MindfulMinutesNativeTests \
+            -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=NO
