@@ -69,4 +69,19 @@ void main() {
 
     expect(hasPermission, isA<bool>());
   }, semanticsEnabled: false);
+  testWidgets('native save rejects malformed and reversed intervals', (tester) async {
+    const channel = MethodChannel('mindful_minutes');
+    for (final arguments in <Object?>[
+      null,
+      {'startTime': 'invalid', 'endTime': 2},
+      {'startTime': 2, 'endTime': 1},
+      {'startTime': double.infinity, 'endTime': 2},
+      {'startTime': 1, 'endTime': double.nan},
+    ]) {
+      await expectLater(
+        channel.invokeMethod<bool>('saveMindfulMinutes', arguments),
+        throwsA(isA<PlatformException>().having((error) => error.code, 'code', 'INVALID_ARGUMENTS')),
+      );
+    }
+  }, semanticsEnabled: false);
 }
