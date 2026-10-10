@@ -1,3 +1,11 @@
+## Unreleased
+
+* Return false through a registered channel when HealthKit is unavailable.
+* Reject reversed intervals in release mode and reject invalid native timestamps.
+* Check write authorization after the permission prompt completes in the example.
+* Document HealthKit setup and permission/error contracts accurately.
+* Exercise SwiftPM, CocoaPods, and native permission/save contracts in CI.
+
 ## 2.0.4
 
 * Refresh the example app with Flutter 3.47.5 and add an Android runner.
