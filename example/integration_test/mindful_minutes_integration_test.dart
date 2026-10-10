@@ -74,6 +74,9 @@ void main() {
     for (final arguments in <Object?>[
       null,
       {'startTime': 'invalid', 'endTime': 2},
+      {'startTime': false, 'endTime': true},
+      {'startTime': false, 'endTime': 1},
+      {'startTime': 0, 'endTime': true},
       {'startTime': 2, 'endTime': 1},
       {'startTime': double.infinity, 'endTime': 2},
       {'startTime': 1, 'endTime': double.nan},

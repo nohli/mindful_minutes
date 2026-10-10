@@ -1,3 +1,4 @@
+import CoreFoundation
 import Flutter
 import HealthKit
 
@@ -91,7 +92,9 @@ public class MindfulMinutesPlugin: NSObject, FlutterPlugin {
   private func saveMindfulMinutes(call: FlutterMethodCall, healthStore: MindfulHealthStore, result: @escaping FlutterResult) {
     guard let arguments = call.arguments as? NSDictionary,
           let startTime = arguments["startTime"] as? NSNumber,
-          let endTime = arguments["endTime"] as? NSNumber else {
+          let endTime = arguments["endTime"] as? NSNumber,
+          CFGetTypeID(startTime) != CFBooleanGetTypeID(),
+          CFGetTypeID(endTime) != CFBooleanGetTypeID() else {
         result(FlutterError(code: "INVALID_ARGUMENTS", message: "Invalid arguments for saveMindfulMinutes", details: nil))
         return
     }

@@ -74,6 +74,8 @@ final class MindfulMinutesNativeTests: XCTestCase {
     let store = FakeMindfulHealthStore()
     let plugin = MindfulMinutesPlugin(healthStore: store)
     let invalid: [Any?] = [nil, ["startTime": "wrong", "endTime": 2],
+      ["startTime": false, "endTime": true], ["startTime": false, "endTime": 1],
+      ["startTime": 0, "endTime": true],
       ["startTime": 2.0, "endTime": 1.0], ["startTime": Double.infinity, "endTime": 2.0],
       ["startTime": 1.0, "endTime": Double.nan]]
     for arguments in invalid {
