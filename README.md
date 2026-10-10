@@ -61,3 +61,5 @@ flutter:
 ```
 
 Use `true` to opt in on Flutter 3.41–3.43. Follow Flutter's [migration guidance](https://docs.flutter.dev/packages-and-plugins/swift-package-manager/for-app-developers) when switching an existing project.
+
+The checked-in example uses modern iOS and Android runners and requires Flutter 3.44 or newer.
