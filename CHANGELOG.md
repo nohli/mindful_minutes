@@ -1,13 +1,17 @@
 ## 2.0.5
 
-* Return false through a registered channel when HealthKit is unavailable.
-* Reject reversed intervals in release mode and reject invalid native timestamps.
-* Reject boolean timestamps instead of treating them as numeric values.
-* Use automatic SwiftPM library linking and document its Flutter 3.41 minimum.
-* Check write authorization after the permission prompt completes in the example.
-* Document HealthKit setup and permission/error contracts accurately.
-* Exercise SwiftPM, CocoaPods, and native permission/save contracts in CI.
-* Migrate the example to the iOS scene lifecycle and document its Flutter 3.44 minimum.
+* Keep the method channel registered when HealthKit is unavailable and return
+  `false` for permission and save operations in that case.
+* Reject reversed iOS intervals with `ArgumentError` in release mode, and reject
+  boolean, non-finite, or reversed timestamps at the native channel boundary.
+* Use automatic SwiftPM library linking with Flutter 3.41 or newer; retain
+  CocoaPods support for older supported Flutter versions.
+* Recheck write authorization after the permission prompt in the example.
+* Clarify HealthKit setup, unsupported-platform results, and native errors;
+  prompt completion alone does not mean write permission was granted.
+* Migrate the example to the iOS scene lifecycle and require Flutter 3.44 or
+  newer for that example, while retaining the package's Flutter 3.10 minimum.
+* Add Dart, native permission/save, SwiftPM, and CocoaPods regression coverage.
 
 ## 2.0.4
 
