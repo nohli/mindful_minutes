@@ -45,7 +45,7 @@ On iOS, reversed intervals throw `ArgumentError`. Native failures propagate as `
 
 ## iOS: Swift Package Manager and CocoaPods
 
-Both dependency managers are supported. Flutter enables Swift Package Manager by default from Flutter 3.44. The following global configuration flags remain available:
+Both dependency managers are supported. This plugin's Swift Package Manager integration requires Flutter 3.41 or newer; use CocoaPods with older Flutter versions. Flutter enables Swift Package Manager by default from Flutter 3.44. The following global configuration flags remain available:
 
 ```sh
 flutter config --enable-swift-package-manager
@@ -60,4 +60,4 @@ flutter:
     enable-swift-package-manager: false
 ```
 
-Use `true` to opt in on Flutter versions that support Swift Package Manager but do not enable it by default. Follow Flutter's [migration guidance](https://docs.flutter.dev/packages-and-plugins/swift-package-manager/for-app-developers) when switching an existing project.
+Use `true` to opt in on Flutter 3.41–3.43. Follow Flutter's [migration guidance](https://docs.flutter.dev/packages-and-plugins/swift-package-manager/for-app-developers) when switching an existing project.

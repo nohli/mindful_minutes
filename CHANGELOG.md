@@ -2,6 +2,8 @@
 
 * Return false through a registered channel when HealthKit is unavailable.
 * Reject reversed intervals in release mode and reject invalid native timestamps.
+* Reject boolean timestamps instead of treating them as numeric values.
+* Use automatic SwiftPM library linking and document its Flutter 3.41 minimum.
 * Check write authorization after the permission prompt completes in the example.
 * Document HealthKit setup and permission/error contracts accurately.
 * Exercise SwiftPM, CocoaPods, and native permission/save contracts in CI.
