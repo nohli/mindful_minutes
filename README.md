@@ -2,7 +2,7 @@
 
 Write mindful minutes to Apple Health on iOS: check write permission, request authorization, and save a session. On other platforms, all methods return `false` without calling native code. On iOS devices where HealthKit is unavailable, they also return `false`.
 
-Requires Flutter 3.47 or newer, Dart 3.13 or newer, and iOS 15 or newer. Keep any higher deployment target required by your app. Apps using older Flutter or iOS can continue with 2.x.
+Requires Flutter 3.47 or newer and iOS 15 or newer. Keep any higher deployment target required by your app. Apps using older Flutter or iOS can continue with 2.x.
 
 ## Getting started
 
