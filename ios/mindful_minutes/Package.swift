@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "mindful_minutes",
     platforms: [
-        .iOS("12.0")
+        .iOS("15.0")
     ],
     products: [
         // Match Flutter's generated SwiftPM expectation (`mindful-minutes`).

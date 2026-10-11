@@ -1,3 +1,10 @@
+## 3.0.0
+
+* **Breaking:** Require Flutter 3.47 or newer and Dart 3.13 or newer.
+  Applications using older Flutter can continue with the previous major version.
+* Raise the native iOS minimum to 15 in both Swift Package Manager and CocoaPods.
+* Align the example’s SDK requirements with the plugin.
+
 ## 2.0.5
 
 * Keep the method channel registered when HealthKit is unavailable and return

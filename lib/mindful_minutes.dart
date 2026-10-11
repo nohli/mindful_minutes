@@ -32,18 +32,12 @@ class MindfulMinutesPlugin {
   /// Returns whether HealthKit saved the sample, or false when unavailable.
   /// Throws [ArgumentError] on iOS if [endTime] precedes [startTime].
   /// Native errors are reported as [PlatformException].
-  Future<bool> writeMindfulMinutes(
-    DateTime startTime,
-    DateTime endTime,
-  ) async {
+  Future<bool> writeMindfulMinutes(DateTime startTime, DateTime endTime) async {
     if (!_isSupported) return false;
     if (endTime.isBefore(startTime)) {
       throw ArgumentError.value(endTime, 'endTime', 'Must be at or after startTime');
     }
-    Map<String, int> args = {
-      'startTime': startTime.millisecondsSinceEpoch,
-      'endTime': endTime.millisecondsSinceEpoch,
-    };
+    Map<String, int> args = {'startTime': startTime.millisecondsSinceEpoch, 'endTime': endTime.millisecondsSinceEpoch};
     return await _channel.invokeMethod<bool?>('saveMindfulMinutes', args) ?? false;
   }
 }
