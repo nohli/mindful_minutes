@@ -19,6 +19,8 @@
 * Migrate the example to the iOS scene lifecycle and require Flutter 3.44 or
   newer for that example, while retaining the package's Flutter 3.10 minimum.
 * Add Dart, native permission/save, SwiftPM, and CocoaPods regression coverage.
+* Keep HealthKit entitlements in simulator integration CI through ad hoc signing;
+  unsigned test hosts could mask missing setup as a false permission result.
 
 ## 2.0.4
 
