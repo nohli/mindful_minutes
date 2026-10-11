@@ -33,7 +33,10 @@ class _MyAppState extends State<MyApp> {
   Future<void> _saveMindfulMinute() async {
     try {
       bool hasPermission = await _plugin.checkPermission();
-      if (!hasPermission) hasPermission = await _plugin.requestPermission();
+      if (!hasPermission) {
+        final requestCompleted = await _plugin.requestPermission();
+        if (requestCompleted) hasPermission = await _plugin.checkPermission();
+      }
 
       if (hasPermission) {
         final endTime = DateTime.now();

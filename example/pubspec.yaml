@@ -8,7 +8,7 @@ publish_to: none
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
-  flutter: '>=3.24.0'
+  flutter: '>=3.44.0'
 
 dependencies:
   flutter:
@@ -17,7 +17,7 @@ dependencies:
     path: ../
 
 dev_dependencies:
-  flutter_lints: ^6.0.0
+  flutter_lints: '>=4.0.0 <7.0.0'
   flutter_test:
     sdk: flutter
   integration_test:
