@@ -2,13 +2,30 @@
 
 Write mindful minutes to Apple Health on iOS: check write permission, request authorization, and save a session. On other platforms, all methods return `false` without calling native code. On iOS devices where HealthKit is unavailable, they also return `false`.
 
-Requires Flutter 3.47 or newer and iOS 15 or newer. Keep any higher deployment target required by your app. Apps using older Flutter or iOS can continue with 2.x.
+Version 3.x requires iOS 15 or newer. Keep any higher deployment target required by your app.
 
 ## Getting started
 
-1. Add the dependency with `flutter pub add mindful_minutes`.
-2. In Xcode, open your app's `ios/Runner.xcworkspace`, select the Runner target, and add the **HealthKit** capability under **Signing & Capabilities**. This adds the HealthKit entitlement. Choose signing that supports this capability for device builds.
-3. Add a write-purpose description to `ios/Runner/Info.plist`:
+Add the matching dependency to your `pubspec.yaml`:
+
+**Flutter 3.47+**
+
+```yaml
+dependencies:
+  mindful_minutes: ^3.0.0
+```
+
+**Flutter 3.10–<3.47**
+
+```yaml
+dependencies:
+  mindful_minutes: ^2.0.4
+```
+
+The 2.x line supports iOS 12 or newer, subject to your Flutter version’s deployment target.
+
+1. In Xcode, open your app's `ios/Runner.xcworkspace`, select the Runner target, and add the **HealthKit** capability under **Signing & Capabilities**. This adds the HealthKit entitlement. Choose signing that supports this capability for device builds.
+2. Add a write-purpose description to `ios/Runner/Info.plist`:
 
 ```xml
 <key>NSHealthUpdateUsageDescription</key>
