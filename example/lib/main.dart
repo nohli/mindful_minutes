@@ -21,10 +21,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         body: Center(
-          child: ElevatedButton(
-            onPressed: _saveMindfulMinute,
-            child: const Text('Save one mindful minute'),
-          ),
+          child: ElevatedButton(onPressed: _saveMindfulMinute, child: const Text('Save one mindful minute')),
         ),
       ),
     );

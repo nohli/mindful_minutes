@@ -3,7 +3,7 @@
 #
 Pod::Spec.new do |s|
     s.name             = 'mindful_minutes'
-    s.version          = '2.0.5'
+    s.version          = '3.0.0'
     s.summary          = 'A Flutter plugin for saving mindful minutes to Apple Health.'
     s.description      = <<-DESC
   A new Flutter plugin.
@@ -15,5 +15,5 @@ Pod::Spec.new do |s|
     s.source_files = 'mindful_minutes/Sources/mindful_minutes/**/*.swift'
     s.dependency 'Flutter'
     s.swift_version = '5.0'
-    s.ios.deployment_target = '12.0'
+    s.ios.deployment_target = '15.0'
   end
