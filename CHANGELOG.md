@@ -1,26 +1,15 @@
 ## 3.0.0
 
-* **Breaking:** Require Flutter 3.47 or newer and Dart 3.13 or newer.
-  Applications using older Flutter can continue with the previous major version.
-* Raise the native iOS minimum to 15 in both Swift Package Manager and CocoaPods.
-* Align the example’s SDK requirements with the plugin.
+* **Breaking:** Require Flutter 3.47+ and iOS 15+. Use 2.x with older supported versions.
 
 ## 2.0.5
 
-* Keep the method channel registered when HealthKit is unavailable and return
-  `false` for permission and save operations in that case.
-* Reject reversed iOS intervals with `ArgumentError` in release mode, and reject
-  boolean, non-finite, or reversed timestamps at the native channel boundary.
-* Use automatic SwiftPM library linking with Flutter 3.41 or newer; retain
-  CocoaPods support for older supported Flutter versions.
-* Recheck write authorization after the permission prompt in the example.
-* Clarify HealthKit setup, unsupported-platform results, and native errors;
-  prompt completion alone does not mean write permission was granted.
-* Migrate the example to the iOS scene lifecycle and require Flutter 3.44 or
-  newer for that example, while retaining the package's Flutter 3.10 minimum.
-* Add Dart, native permission/save, SwiftPM, and CocoaPods regression coverage.
-* Keep HealthKit entitlements in simulator integration CI through ad hoc signing;
-  unsigned test hosts could mask missing setup as a false permission result.
+* Return `false` when HealthKit is unavailable.
+* Reject reversed session intervals in release builds and invalid native timestamps.
+* Fix SwiftPM linking on Flutter 3.41+; retain CocoaPods support.
+* Recheck permission after the example’s authorization prompt.
+* Clarify HealthKit setup, permission results and native errors.
+* Require Flutter 3.44+ for the example; the package still supports Flutter 3.10+.
 
 ## 2.0.4
 
