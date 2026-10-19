@@ -1,3 +1,12 @@
+## 2.0.5
+
+* Return `false` when HealthKit is unavailable.
+* Reject reversed session intervals in release builds and invalid native timestamps.
+* Fix SwiftPM linking on Flutter 3.41+; retain CocoaPods support.
+* Recheck permission after the example’s authorization prompt.
+* Clarify HealthKit setup, permission results and native errors.
+* Require Flutter 3.44+ for the example; the package still supports Flutter 3.10+.
+
 ## 2.0.4
 
 * Refresh the example app with Flutter 3.47.5 and add an Android runner.

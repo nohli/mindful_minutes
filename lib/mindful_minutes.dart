@@ -12,27 +12,34 @@ class MindfulMinutesPlugin {
 
   /// Checks if the app has permission to write mindful minutes to Apple Health.
   /// Returns a bool with the writing permission status.
-  /// Returns false if the call was not successful.
+  /// Returns false when HealthKit is unavailable or permission is not granted.
+  /// Native errors are reported as [PlatformException].
   Future<bool> checkPermission() async {
     if (!_isSupported) return false;
     return await _channel.invokeMethod<bool?>('checkPermission') ?? false;
   }
 
   /// Requests the permission for writing mindful minutes to Apple Health.
-  /// Returns a bool whether the request was successful.
+  /// Returns whether the authorization prompt completed successfully, even if
+  /// the user denied permission. Call [checkPermission] to check the result.
+  /// Native errors are reported as [PlatformException].
   Future<bool> requestPermission() async {
     if (!_isSupported) return false;
     return await _channel.invokeMethod<bool?>('requestPermission') ?? false;
   }
 
   /// Writes mindful minutes to Apple Health.
-  /// Returns false if the call was not successful.
+  /// Returns whether HealthKit saved the sample, or false when unavailable.
+  /// Throws [ArgumentError] on iOS if [endTime] precedes [startTime].
+  /// Native errors are reported as [PlatformException].
   Future<bool> writeMindfulMinutes(
     DateTime startTime,
     DateTime endTime,
   ) async {
     if (!_isSupported) return false;
-    assert(!endTime.isBefore(startTime), 'startTime must be before endTime');
+    if (endTime.isBefore(startTime)) {
+      throw ArgumentError.value(endTime, 'endTime', 'Must be at or after startTime');
+    }
     Map<String, int> args = {
       'startTime': startTime.millisecondsSinceEpoch,
       'endTime': endTime.millisecondsSinceEpoch,
