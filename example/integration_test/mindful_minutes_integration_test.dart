@@ -27,9 +27,7 @@ void main() {
             return true;
           case 'saveMindfulMinutes':
             final Map<dynamic, dynamic> rawArgs = call.arguments as Map<dynamic, dynamic>;
-            final Map<String, int> args = rawArgs.map(
-              (key, value) => MapEntry(key as String, value as int),
-            );
+            final Map<String, int> args = rawArgs.map((key, value) => MapEntry(key as String, value as int));
             expect(args, contains('startTime'));
             expect(args, contains('endTime'));
             expect(

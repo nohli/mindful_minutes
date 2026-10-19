@@ -2,13 +2,30 @@
 
 Write mindful minutes to Apple Health on iOS: check write permission, request authorization, and save a session. On other platforms, all methods return `false` without calling native code. On iOS devices where HealthKit is unavailable, they also return `false`.
 
-Requires Flutter 3.10 or newer. The native plugin supports iOS 12 or newer; your Flutter version can require a higher deployment target (Flutter 3.47 requires iOS 15).
+Version 3.x requires iOS 15 or newer. Keep any higher deployment target required by your app.
 
 ## Getting started
 
-1. Add the dependency with `flutter pub add mindful_minutes`.
-2. In Xcode, open your app's `ios/Runner.xcworkspace`, select the Runner target, and add the **HealthKit** capability under **Signing & Capabilities**. This adds the HealthKit entitlement. Choose signing that supports this capability for device builds.
-3. Add a write-purpose description to `ios/Runner/Info.plist`:
+Add the matching dependency to your `pubspec.yaml`:
+
+**Flutter 3.47+**
+
+```yaml
+dependencies:
+  mindful_minutes: ^3.0.0
+```
+
+**Flutter 3.10–<3.47**
+
+```yaml
+dependencies:
+  mindful_minutes: ^2.0.4
+```
+
+The 2.x line supports iOS 12 or newer, subject to your Flutter version’s deployment target.
+
+1. In Xcode, open your app's `ios/Runner.xcworkspace`, select the Runner target, and add the **HealthKit** capability under **Signing & Capabilities**. This adds the HealthKit entitlement. Choose signing that supports this capability for device builds.
+2. Add a write-purpose description to `ios/Runner/Info.plist`:
 
 ```xml
 <key>NSHealthUpdateUsageDescription</key>
@@ -45,7 +62,7 @@ On iOS, reversed intervals throw `ArgumentError`. Native failures propagate as `
 
 ## iOS: Swift Package Manager and CocoaPods
 
-Both dependency managers are supported. This plugin's Swift Package Manager integration requires Flutter 3.41 or newer; use CocoaPods with older Flutter versions. Flutter enables Swift Package Manager by default from Flutter 3.44. The following global configuration flags remain available:
+Both dependency managers are supported. Flutter enables Swift Package Manager by default from Flutter 3.44, including all Flutter versions supported by 3.0.0. The following global configuration flags remain available:
 
 ```sh
 flutter config --enable-swift-package-manager
@@ -60,6 +77,6 @@ flutter:
     enable-swift-package-manager: false
 ```
 
-Use `true` to opt in on Flutter 3.41–3.43. Follow Flutter's [migration guidance](https://docs.flutter.dev/packages-and-plugins/swift-package-manager/for-app-developers) when switching an existing project.
+Use `true` to enable Swift Package Manager for an app that previously disabled it. Follow Flutter's [migration guidance](https://docs.flutter.dev/packages-and-plugins/swift-package-manager/for-app-developers) when switching an existing project.
 
-The checked-in example uses modern iOS and Android runners and requires Flutter 3.44 or newer.
+The checked-in example uses modern iOS and Android runners and requires Flutter 3.47 or newer.
