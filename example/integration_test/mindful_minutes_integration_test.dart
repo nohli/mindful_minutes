@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
@@ -28,9 +28,9 @@ void main() {
           case 'saveMindfulMinutes':
             final Map<dynamic, dynamic> rawArgs = call.arguments as Map<dynamic, dynamic>;
             final Map<String, int> args = rawArgs.map((key, value) => MapEntry(key as String, value as int));
-            expect(args, contains('startTime'));
-            expect(args, contains('endTime'));
-            expect(
+            expectSync(args, contains('startTime'));
+            expectSync(args, contains('endTime'));
+            expectSync(
               args['endTime']! - args['startTime']!,
               greaterThanOrEqualTo(const Duration(minutes: 1).inMilliseconds),
             );

@@ -1,6 +1,7 @@
 ## 3.0.0
 
 * **Breaking:** Require Flutter 3.47+ and iOS 15+. Use 2.x with older supported versions.
+* Remove Flutter 3.50 deprecations from the example.
 
 ## 2.0.5
 
