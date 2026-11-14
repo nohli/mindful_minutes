@@ -89,5 +89,12 @@ jobs:
           api-level: ${{ matrix.api-level }}
           profile: ${{ matrix.profile }}
           arch: x86_64
-          script: |
-            cd example && flutter test integration_test/unsupported_platform_integration_test.dart
+          script: bash .github/test_support/run_android_integration.sh ${{ matrix.api-level }}
+
+      - name: Upload API 24 installation evidence
+        if: always() && matrix.api-level == 24
+        uses: actions/upload-artifact@v7
+        with:
+          name: android-api24-install-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/mindful-android-install
+          if-no-files-found: ignore
