@@ -25,3 +25,6 @@ migrate_working_dir/
 /.fvm/
 .packages
 build/
+
+# Generated FVM SDK links
+.fvm/
