@@ -12,6 +12,11 @@ fi
 diagnostics="${RUNNER_TEMP:?Runner temporary directory required}/mindful-android-install"
 mkdir -p "$diagnostics"
 serial="emulator-${EMULATOR_PORT:-5554}"
+if python3 "$repo_root/.github/test_support/stop_android_emulator.py" record "$diagnostics" "${EMULATOR_PORT:-5554}"; then
+  printf 'Emulator ownership recorded.\n'
+else
+  printf 'Emulator ownership unverified; the test still runs.\n'
+fi
 
 timeout --kill-after=5s 660s adb -s "$serial" logcat -v threadtime > "$diagnostics/logcat.log" 2>&1 &
 logcat_pid=$!
@@ -48,5 +53,13 @@ if [ "$test_exit" -ne 0 ]; then
   capture processes adb -s "$serial" shell ps
   capture package adb -s "$serial" shell dumpsys package com.mindfulminutes.mindful_minutes_example
   capture logcat-after adb -s "$serial" logcat -d -v threadtime
+fi
+if python3 "$repo_root/.github/test_support/stop_android_emulator.py" stop "$diagnostics" "${EMULATOR_PORT:-5554}"; then
+  cleanup_exit=0
+else
+  cleanup_exit=$?
+fi
+if [ "$test_exit" -eq 0 ] && [ "$cleanup_exit" -ne 0 ]; then
+  exit "$cleanup_exit"
 fi
 exit "$test_exit"
