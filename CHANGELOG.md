@@ -1,7 +1,6 @@
 ## 3.0.0
 
-* **Breaking:** Require Flutter 3.47+ and iOS 15+. Use 2.x with older supported versions.
-* Remove Flutter 3.50 deprecations from the example.
+* **Breaking:** Require Flutter 3.47+, Dart 3.13+, and iOS 15+. Use 2.x with older supported versions.
 
 ## 2.0.5
 
@@ -10,7 +9,7 @@
 * Fix SwiftPM linking on Flutter 3.41+; retain CocoaPods support.
 * Recheck permission after the example’s authorization prompt.
 * Clarify HealthKit setup, permission results and native errors.
-* Require Flutter 3.44+ for the example; the package still supports Flutter 3.10+.
+* Require Flutter 3.47+ for the example; the package still supports Flutter 3.10+.
 
 ## 2.0.4
 
