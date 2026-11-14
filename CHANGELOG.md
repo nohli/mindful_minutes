@@ -1,15 +1,16 @@
 ## 3.0.0
 
-* **Breaking:** Require Flutter 3.47+, Dart 3.13+, and iOS 15+. Use 2.x with older supported versions.
+* **Breaking:** Requires Flutter 3.47, Dart 3.13 and iOS 15 or later; no Dart API changes
 
 ## 2.0.5
 
-* Return `false` when HealthKit is unavailable.
-* Reject reversed session intervals in release builds and invalid native timestamps.
-* Fix SwiftPM linking on Flutter 3.41+; retain CocoaPods support.
-* Recheck permission after the example’s authorization prompt.
-* Clarify HealthKit setup, permission results and native errors.
-* Require Flutter 3.47+ for the example; the package still supports Flutter 3.10+.
+* Return `false` from HealthKit calls when HealthKit is unavailable
+* Throw `ArgumentError` on iOS when a session ends before it starts, including in release builds
+* Reject invalid timestamps received by the native iOS plugin
+* Fix Swift Package Manager linking on Flutter 3.41+; CocoaPods remains supported
+* Recheck HealthKit write permission after the authorization prompt in the example
+* Replace deprecated Material imports with `package:material_ui/material_ui.dart` in the example for Flutter 3.50
+* The example now requires Flutter 3.47+; the package still supports Flutter 3.10+
 
 ## 2.0.4
 
