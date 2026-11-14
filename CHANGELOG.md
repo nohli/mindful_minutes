@@ -5,7 +5,7 @@
 * Fix SwiftPM linking on Flutter 3.41+; retain CocoaPods support.
 * Recheck permission after the example’s authorization prompt.
 * Clarify HealthKit setup, permission results and native errors.
-* Require Flutter 3.44+ for the example; the package still supports Flutter 3.10+.
+* Require Flutter 3.47+ for the example; the package still supports Flutter 3.10+.
 
 ## 2.0.4
 

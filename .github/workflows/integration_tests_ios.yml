@@ -71,7 +71,7 @@ jobs:
         run: |
           flutter create --empty --platforms=ios --org io.achim "$RUNNER_TEMP/mindful_integration"
           cd "$RUNNER_TEMP/mindful_integration"
-          flutter pub add "mindful_minutes@{path: $GITHUB_WORKSPACE}" "dev:integration_test@{sdk: flutter}"
+          flutter pub add "mindful_minutes@{path: $GITHUB_WORKSPACE}" "dev:integration_test@{sdk: flutter}" "material_ui:^1.11.0"
           mkdir -p integration_test
           cp "$GITHUB_WORKSPACE/example/integration_test/mindful_minutes_integration_test.dart" integration_test/
           cp -R "$GITHUB_WORKSPACE/example/lib" example_lib
