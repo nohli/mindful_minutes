@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:mindful_minutes/mindful_minutes.dart';
 
 void main() => runApp(const MyApp());
@@ -21,10 +21,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         body: Center(
-          child: ElevatedButton(
-            onPressed: _saveMindfulMinute,
-            child: const Text('Save one mindful minute'),
-          ),
+          child: ElevatedButton(onPressed: _saveMindfulMinute, child: const Text('Save one mindful minute')),
         ),
       ),
     );
